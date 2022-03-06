@@ -1,4 +1,6 @@
 /SenecaPy
-/__pycache__
-.gitignore
-map.html
+Seneca/Modules/__pycache__
+Seneca/Modules/Data/json/UserKeys.json
+Seneca/Modules/Data/MyUserData.txt
+Seneca/__pycache__
+*

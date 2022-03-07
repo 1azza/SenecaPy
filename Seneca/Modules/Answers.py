@@ -7,27 +7,27 @@ class Answers:
         self.idToken = idToken
 
 
-    def _parseUrl(self):
-        courseId = self.url.split('course/')[1].split('/section')[0]
-        SectionId = self.url.split('section/')[1].split('/session')[0]
+    def _parseUrl(self, url):
+        courseId = url.split('course/')[1].split('/section')[0]
+        SectionId = url.split('section/')[1].split('/session')[0]
         return [courseId, SectionId]
 
     def Get(self, url):
+
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
-        self.url = url
-        Ids = self._parseUrl()[0]
+        Ids = self._parseUrl(url)[0]
         Template.insert(1, Ids)
-        print(Template)
         self.url = ''.join(Template)
-        print(self.url)
         querystring = {"sectionId":"e7302180-1d3a-11e8-826e-91b9b920c8af"}
         headers = {
             "authority": "course.app.senecalearning.com",
             "correlationid": "1646689150102::d1ad61f3c3f3a08c484a352cbf79c72d",
         }
         response = requests.request("GET", self.url, headers=headers, params=querystring)
+        self.url =  response.json().get('url')
+        response = requests.request("GET", self.url, headers=headers)
+        pprint(response.json())
 
-        print(response.text)
 
 import requests
 

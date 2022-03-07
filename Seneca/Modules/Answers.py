@@ -15,10 +15,10 @@ class Answers:
     def Get(self, url):
 
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
-        Ids = self._parseUrl(url)[0]
-        Template.insert(1, Ids)
+        Ids = self._parseUrl(url)
+        Template.insert(1, Ids[0])
         self.url = ''.join(Template)
-        querystring = {"sectionId":"e7302180-1d3a-11e8-826e-91b9b920c8af"}
+        querystring = {"sectionId":Ids[1]}
         headers = {
             "authority": "course.app.senecalearning.com",
             "correlationid": "1646689150102::d1ad61f3c3f3a08c484a352cbf79c72d",

@@ -18,14 +18,22 @@ class Locations:
 
 
     def GetLocation(self, name):
+        """
+        Finds Longitude and Latitude coords from the name of the location from seneca
+        Args:
+            name (string): The name of the place to find
+
+        Returns:
+            Coords (list): Longitude and Latidud of the location
+        """                
         for i in self.data:
             if i.get('name') == name:
                 print('Found Location for:')
                 self.name = print(self.__ParseInfo(i))
-                l = []
-                l.append(i.get('latitude'))
-                l.append(i.get('longitude'))
+                Coords = []
+                Coords.append(i.get('latitude'))
+                Coords.append(i.get('longitude'))
 
-                return l
+                return Coords
 
 

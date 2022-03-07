@@ -2,14 +2,22 @@ from pprint import pprint
 import requests
 from .Data.data import APIKEY ,GLOBALHEADERS
 import json
-import jwt                                                                                                                          
+import jwt
 class Token:
     def __init__(self):
         pass
-    def Refresh(self):
+
+    def Refresh(self, token):
+        """
+        Args:
+            token (str): Your User refresh_token
+        Returns:
+            string: Updated id_token (json web token)
+        """        
         url = "https://securetoken.googleapis.com/v1/token"
         headers = GLOBALHEADERS
         querystring = {"key": APIKEY}
+        
         payload = "grant_type=refresh_token&refresh_token=AIwUaOmZb842ImxwkqX-GpkLq9mVzr2YrQFpfRUO6NIYKwb_byURoSy7GEHW4k7-4xIdv9QIJlMb8kK4iuMlP8FHuLnR1wACPISwN0ZJm3GJBSmmLfSjuCnEJNhcV1szMqcoemlKBf6Z74fCbR3Qknd9gBe3fp-Lj7NjCkIo4hetVq00NxvWUZcLZHlWQU2klRvloGwHLDVpR-PhlhoC9OtBZXYV3e6zIkr7-BJnrLD-iQqLAULaN9c8PK7qxIHGdJcXDpNoxKNI6TfdGYMY8nO24z80iGVh5Q"
         headers["authority"] = "securetoken.googleapis.com"
         response = requests.request(
@@ -22,3 +30,4 @@ class Token:
         return self.token
     def DecodeToken(self):
         print('Not done yet')
+        

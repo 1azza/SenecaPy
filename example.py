@@ -1,3 +1,3 @@
 import Seneca
 info = Seneca.user.GetInfo()
-Seneca.answers.Get('https://app.senecalearning.com/classroom/course/b4e64de8-a5d1-411b-81e2-aa4e2016e908/section/ed481f57-dd87-45b7-a511-3aca8054fafd/session')
+Seneca.answers.Get('https://app.senecalearning.com/classroom/course/155ff5e0-374d-11e8-b1d7-1d16c592d2f8/section/053ff430-38ba-11e8-a6d2-7f9af227008a/session')

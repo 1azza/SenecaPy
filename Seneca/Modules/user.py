@@ -5,6 +5,7 @@ from .Data.data import refresh_key ,GLOBALHEADERS
 class User:
     def __init__(self, idToken):
         self.idToken = idToken
+        self.GetInfo()
 
     def GetInfo(self):
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo"
@@ -17,8 +18,9 @@ class User:
         }
 
         response = requests.request("POST", url, json=payload, headers=headers, params=querystring)
-
-        return response.json()
+        userData = response.json()
+        self.displayName = userData.get('users')[0].get('displayName')
+        return userData
 
 import requests
 

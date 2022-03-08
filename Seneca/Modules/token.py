@@ -27,7 +27,6 @@ class Token:
             print('Invalid token')
             return 0
         else:
-            print('New token')
             JSON = json.dumps(response.json(),   indent=4, sort_keys=True)
             with open('Seneca\\Modules\\Data\\json\\UserKeys.json', 'w',   encoding="utf8") as f:
                 f.write(JSON)

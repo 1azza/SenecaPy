@@ -6,3 +6,5 @@ Seneca/__pycache__
 map.html
 *.pyc
 Bookmarklets
+.vscode
+tests

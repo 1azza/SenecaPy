@@ -12,72 +12,90 @@ class Answers:
         SectionId = url.split('section/')[1].split('/session')[0]
         return [courseId, SectionId]
 
+
+
+
     
     def _Parse(self, data):
                 
         #Finds Modules Ids and Number of Modules
-        NumberOfModules = 0
-        ModuleIds = []
-        for i in data.get("moduleIds"):
-            NumberOfModules += 1
-            ModuleIds.append(i)
-            
-            
-        #Finds title
-        title = data.get('title')
-
-        #Output
-        print(f'---{title}---')
-        print(f'NumberOfQuestions:\n{NumberOfModules}')
-
-
-
-        Modules = []
-        contents = data.get('contents')
-        Question = 0
-        for i in contents:
-            contentModules = i.get('contentModules')
-            for i in contentModules:
-                Modules.append({ Question:[i.get('content'), i.get('moduleType')]})
+            NumberOfModules = 0
+            ModuleIds = []
+            for i in data.get("moduleIds"):
+                NumberOfModules += 1
+                ModuleIds.append(i)
                 
-                Question += 1
-        print(f'FoundModules:\n{len(Modules)}')
+                
+            #Finds title
+            title = data.get('title')
+
+            #Output
+            print(f'---{title}---')
+            print(f'NumberOfQuestions:\n{NumberOfModules}')
 
 
 
-        def Calculate(Type, q):
-            if Type == 'equation':
-                a = [q.get('title')]
-                a.append(q.get('blocks')[0].get('word'))
-                return a
-            elif Type == 'multiple-choice':
-                a = [q.get('statement')]
-                a.append(q.get('correctAnswer'))
-                return a
-            elif Type == 'toggles':
-                a = [q.get('statement')]
-                amount = q.get('toggles')
-                Correct = []
-                for i in amount:
-                    Correct.append(i.get('correctToggle'))
-                a.append(Correct)
-                return a
-            elif Type == 'wordfill':
-                a = [Type]
-                a.append(q.get('words')[-2].get('word'))
-                return a
-            
-        Answers = {}
-        for i in range(len(Modules)):
-            q = Modules[i].get(i)
-            Type = q[1]
-            Content = q[0]
-            # continue
-            Result = Calculate(Type, Content)
-            if Result:
-                Answers[i] = Result
+            Modules = []
+            contents = data.get('contents')
+            Question = 0
+            for i in contents:
+                contentModules = i.get('contentModules')
+                for i in contentModules:
+                    Modules.append({ Question:[i.get('content'), i.get('moduleType')]})
+                    
+                    Question += 1
+            print(f'FoundModules:\n{len(Modules)}')
 
-        pprint(Answers)
+
+
+            def Calculate(Type, q):
+                if Type == 'equation':
+                    a = [q.get('title')]
+                    a.append(q.get('blocks')[0].get('word'))
+                    return a
+                elif Type == 'multiple-choice':
+                    a = [q.get('statement')]
+                    a.append(q.get('correctAnswer'))
+                    return a
+                elif Type == 'toggles':
+                    a = [q.get('statement')]
+                    amount = q.get('toggles')
+                    Correct = []
+                    for i in amount:
+                        Correct.append(i.get('correctToggle'))
+                    a.append(Correct)
+                    return a
+                elif Type == 'wordfill':
+                    a = [Type]
+                    a.append(q.get('words')[-2].get('word'))
+                    return a
+                elif Type == 'worked-example':
+                    a = [q.get('question')]
+                    steps = q.get('steps')
+                    for i in steps:
+                        try:
+                            a.append(i.get('equation')[1].get('word'))
+                        except:
+                            continue
+                    return a
+                
+            Answers = {}
+            for i in range(len(Modules)):
+                q = Modules[i].get(i)
+                Type = q[1]
+                Content = q[0]
+                # continue
+                Result = Calculate(Type, Content)
+                if Result:
+                    Answers[i] = Result
+
+            pprint(Answers)
+        
+        
+        
+        
+        
+        
         
         
     def Fetch(self, url):

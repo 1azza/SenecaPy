@@ -3,8 +3,8 @@ import requests
 from pprint import pprint
 from .Data.data import refresh_key ,GLOBALHEADERS
 class Answers:
-    def __init__(self, idToken):
-        self.idToken = idToken
+    def __init__(self):
+        pass
 
 
     def _parseUrl(self, url):

@@ -23,6 +23,7 @@ class Token:
         response = requests.request(
             "POST", url, data=payload, headers=headers, params=querystring)
         self.idToken = response.json().get('id_token')
+        self.user_id = response.json().get('user_id')
         if self.idToken == None:
             print('Invalid token')
             return 0

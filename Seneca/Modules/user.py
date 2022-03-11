@@ -3,7 +3,7 @@ import requests
 from pprint import pprint
 from .Data.data import refresh_key ,GLOBALHEADERS
 class User:
-    def __init__(self, idToken):
+    def __init__(self, idToken): 
         """_summary_
 
         Args:

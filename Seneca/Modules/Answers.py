@@ -47,7 +47,6 @@ class Answers:
             print(f'FoundModules:\n{len(Modules)}')
 
 
-
             def Calculate(Type, q):
                 if Type == 'equation':
                     a = [q.get('title')]
@@ -72,12 +71,44 @@ class Answers:
                 elif Type == 'worked-example':
                     a = [q.get('question')]
                     steps = q.get('steps')
+                    Correct = []
                     for i in steps:
                         try:
-                            a.append(i.get('equation')[1].get('word'))
+                            Correct.append(i.get('equation')[1].get('word'))
                         except:
                             continue
+                    a.append(Correct)
                     return a
+                
+                elif Type == 'grid':
+                    a = [q.get('title')]
+                    Correct = []
+                    for i in q.get('definitions'):
+                        Correct.append(i.get('word')[1].get('word'))
+                    a.append(Correct)
+                    return a
+                
+                elif Type == 'exact-list':
+                    a = [q.get('statement')]
+                    Correct = []
+                    for i in q.get('values'):
+                        Correct.append(i.get('value')[0].get('word'))
+                    a.append(Correct)
+                    return a
+                
+                elif Type == 'multiSelect':
+                    a = [q.get('question')]
+                    Correct = []
+                    for i in q.get('options'):
+                        if i.get('correct') == True:
+                            Correct.append(i.get('text'))
+                    a.append(Correct)
+                    return a
+                elif Type == 'image':
+                    a = [Type]
+                    a.append(q)
+                    return a
+            
                 
             Answers = {}
             for i in range(len(Modules)):

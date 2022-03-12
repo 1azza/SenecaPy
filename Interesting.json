@@ -1,0 +1,175 @@
+window.env = {
+  "services": {
+    "adminGatewayService": {
+      "protocol": "https",
+      "host": "admin-gateway.app.senecalearning.com"
+    },
+    "authenticationService": {
+      "userPoolClientId": "5e9bhjn9pn9tf41hrr7s1rqhr4",
+      "userPoolId": "eu-west-1_5sGUjs8Wq",
+      "userPoolEndpoint": "https://identity.app.senecalearning.com",
+      "protocol": "https",
+      "host": "authentication.app.senecalearning.com",
+      "retryCount": 0
+    },
+    "assignmentsService": {
+      "protocol": "https",
+      "host": "assignments.app.senecalearning.com"
+    },
+    "courseService": {
+      "protocol": "https",
+      "host": "course.app.senecalearning.com",
+      "baseCdnUrl": "https://course-cdn-v2.app.senecalearning.com"
+    },
+    "userService": {
+      "protocol": "https",
+      "host": "user-info.app.senecalearning.com"
+    },
+    "statsService": {
+      "protocol": "https",
+      "host": "stats.app.senecalearning.com"
+    },
+    "memoryService": {
+      "protocol": "https",
+      "host": "memory.app.senecalearning.com"
+    },
+    "imageCdn": {
+      "protocol": "https",
+      "host": "upload-images.app.senecalearning.com",
+      "cdnBaseUrl": "https://image.cdn.app.senecalearning.com"
+    },
+    "imageService": {
+      "protocol": "https",
+      "host": "image.app.senecalearning.com",
+      "cdnBaseUrl": "https://image-v2.cdn.app.senecalearning.com"
+    },
+    "imageTagsService": {
+      "protocol": "https",
+      "host": "image-tags.app.senecalearning.com"
+    },
+    "schoolsService": {
+      "protocol": "https",
+      "host": "schools.app.senecalearning.com"
+    },
+    "userFeedback": {
+      "protocol": "https",
+      "host": "user-feedback.app.senecalearning.com"
+    },
+    "classService": {
+      "protocol": "https",
+      "host": "class.app.senecalearning.com"
+    },
+    "subscriptionService": {
+      "protocol": "https",
+      "host": "subscriptions.app.senecalearning.com"
+    },
+    "tagService": {
+      "protocol": "https",
+      "host": "tags.app.senecalearning.com"
+    },
+    "tournamentsService": {
+      "protocol": "https",
+      "host": "tournaments.app.senecalearning.com"
+    },
+    "geolocationService": {
+      "protocol": "https",
+      "host": "geolocation.app.senecalearning.com"
+    },
+    "trialsService": {
+      "protocol": "https",
+      "host": "trials.app.senecalearning.com"
+    },
+    "parentsService": {
+      "protocol": "https",
+      "host": "parents.app.senecalearning.com"
+    },
+    "schoolAnalyticsService": {
+      "protocol": "https",
+      "host": "school-analytics.app.senecalearning.com"
+    },
+    "challengeService": {
+      "protocol": "https",
+      "host": "challenge.app.senecalearning.com"
+    },
+    "liveFeedService": {
+      "protocol": "https",
+      "host": "live-feed.app.senecalearning.com"
+    },
+    "shortAnswerService": {
+      "protocol": "https",
+      "host": "short-answer.app.senecalearning.com"
+    },
+    "schoolLeaderboardsService": {
+      "protocol": "https",
+      "host": "school-leaderboards.app.senecalearning.com"
+    },
+    "classLeaderboardsService": {
+      "protocol": "https",
+      "host": "class-leaderboards.app.senecalearning.com"
+    },
+    "discordService": {
+      "protocol": "https",
+      "host": "discord.app.senecalearning.com"
+    }
+  },
+  "sentry": {
+    "dsn": "https://0af00c9f8b4b45ee8d00f1d0f3ab09a7@sentry.io/298395",
+    "environment": "production"
+  },
+  "stripePublicKey": "pk_live_11CE1Pa7Fy7Fmg0fNv98clBm",
+  "intercomId": "fwcflxs6",
+  "googleTagManager": {
+    "id": "GTM-PRHT9CF",
+    "auth": "-s5EpsZ3D6k7FmMiQbyuBg",
+    "preview": "env-2"
+  },
+  "pwa": {
+    "showWarningForVersions": [
+      "V1.12.15",
+      "V1.17.0"
+    ],
+    "forceUpdateForVersions": [
+      "V1.11.160",
+      "V1.12.104",
+      "V1.12.106",
+      "V1.13.12",
+      "V1.13.26",
+      "V1.13.48",
+      "V1.13.49",
+      "V2.0.40",
+      "V2.2.62"
+    ],
+    "showDebugMessages": false,
+    "pollForNewServiceWorkerTimeoutMS": 3600000,
+    "toastVisibilityTimeoutMS": 86400000
+  },
+  "firebase": {
+    "storageBucket": "seneca-auth-production.appspot.com",
+    "apiKey": "AIzaSyDXmCdeFZFJbQOtl6xupkxZw-lIOKuJQKg",
+    "messagingSenderId": "1003800246028",
+    "appId": "1:1003800246028:web:85f01deaee696cfb19fb29",
+    "measurementId": "G-VKRZ4QY04D",
+    "projectId": "seneca-auth-production",
+    "authDomain": "auth.app.senecalearning.com"
+  },
+  "plurall": {
+    "firebase": {
+      "storageBucket": "seneca-auth-production-oidc.appspot.com",
+      "apiKey": "AIzaSyBr0w-JCR8bIcKBNXYuzFtCNI7NhoV2q7c",
+      "messagingSenderId": "898913944699",
+      "appId": "1:898913944699:web:73c20f4b28f3520690cede",
+      "measurementId": "G-2S9F711KBR",
+      "projectId": "seneca-auth-production-oidc",
+      "authDomain": "auth.oidc.app.senecalearning.com"
+    },
+    "domain": "adapta.plurall.net",
+    "helpCentreEndpoint": "https://api.plurall.net/api",
+    "helpCentreCookieName": "shared_cookie",
+    "linkToPlurallStore": "https://store.plurall.net/adapta/?utm_source=seneca"
+  },
+  "websockets": {
+    "sessionService": {
+      "url": "wss://session-ws.app.senecalearning.com"
+    }
+  }
+}

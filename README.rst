@@ -47,7 +47,7 @@ Quick Example
 
 
     #Initialise user object
-    user = seneca.User('AIzaSyDXmCdeFZFJbQOtl6xupkxZw-lIOKuJQKg')
+    user = seneca.User('YOUR USER KEY')
 
 
     #Get All keys stored within the account

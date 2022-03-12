@@ -6,7 +6,7 @@ import jwt
 class Token:
     def __init__(self):
         pass
-
+    
     def Refresh(self, refresh_key):
         """
         Args:
@@ -28,9 +28,7 @@ class Token:
             print('Invalid token')
             return 0
         else:
-            JSON = json.dumps(response.json(),   indent=4, sort_keys=True)
-            with open('Seneca\\Modules\\Data\\json\\UserKeys.json', 'w',   encoding="utf8") as f:
-                f.write(JSON)
+            self.userKeys = json.dumps(response.json(),   indent=4, sort_keys=True)
             return self.idToken
     def DecodeToken(self):
         print('Not done yet')

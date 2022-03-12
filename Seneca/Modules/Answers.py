@@ -1,7 +1,6 @@
 from lib2to3.pgen2 import token
 import requests
 from pprint import pprint
-from .Data.data import refresh_key ,GLOBALHEADERS
 class Answers:
     def __init__(self):
         pass

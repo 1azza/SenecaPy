@@ -30,11 +30,11 @@ To install the development version, do the following:
 How to get API key
 ------------------
 
-> Go to https://app.senecalearning.com/ 
-> Log on to the website
-> Open Developer tools and goto console
-> run this code in the console
-.. code:: js
+1. Go to https://app.senecalearning.com/ 
+2. Log on to the website
+3. Open Developer tools and goto console
+4. run this code in the console
+.. code:: py
     window.env.firebase.apiKey
 
 

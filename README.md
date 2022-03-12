@@ -29,6 +29,8 @@ Quick Example
 -------------
 
 .. code:: py
+
+
     from pprint import pprint
     import seneca
 

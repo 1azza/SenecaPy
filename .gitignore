@@ -12,3 +12,7 @@ example.py
 workspace.code-workspace
 Seneca/Modules/Data/json/UserKeys.json
 Seneca/Modules/Data/__pycache__/data.cpython-310.pyc
+
+build
+dist/SenecaPy-0.0.1.tar.gz
+dist/SenecaPy-1.0.1.tar.gz

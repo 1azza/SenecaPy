@@ -1,15 +1,1 @@
-branca==0.4.2
-certifi==2021.10.8        
-cffi==1.15.0
-charset-normalizer==2.0.12
-cryptography==36.0.1      
-folium==0.12.1.post1      
-geographiclib==1.52       
-idna==3.3
-Jinja2==3.0.3
-MarkupSafe==2.1.0
-numpy==1.22.2
-pycparser==2.21
-PyJWT==2.1.0
 requests==2.27.1
-urllib3==1.26.8

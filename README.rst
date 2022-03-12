@@ -1,4 +1,5 @@
-# SenecaPy
+SenecaPy
+--------
 A python library to interact with the senecalearning.com API
 
 Installing
@@ -47,7 +48,7 @@ Quick Example
 
 
     #Initialise user object
-    user = seneca.User('YOUR USER KEY')
+    user = seneca.User('YOUR API KEY')
 
 
     #Get All keys stored within the account

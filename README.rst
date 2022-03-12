@@ -34,6 +34,7 @@ How to get API key
 2. Log on to the website
 3. Open Developer tools and goto console
 4. run this code in the console
+
 .. code:: py
 
 

@@ -1,6 +1,1 @@
-<<<<<<< HEAD
-PyJWT==2.1.0
 requests==2.27.1
-=======
-requests==2.27.1
->>>>>>> 8e61eb6323f3a2c76f5ef4b6558fad6d9d51d9e8

@@ -1,11 +1,15 @@
 import json
-import json
+import requests
 
 
 class Locations:
     def __init__(self):
-        f = open('Seneca\Modules\Data\json\Locations.json',  encoding="utf8")
-        self.data = json.load(f)
+        url = "https://memory.app.senecalearning.com/api/locations"
+        querystring = {"limit":"2000"}
+        headers = {"correlationid": "1647102551794::327892c76c7fed9f1443ebe7fac9c258"}
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        self.data = json.loads(response.text).get('items')
+
     def __ParseInfo(self, i):
             loc = []
             loc.append(i.get('countryName'))

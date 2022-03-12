@@ -35,6 +35,8 @@ How to get API key
 3. Open Developer tools and goto console
 4. run this code in the console
 .. code:: py
+
+
     window.env.firebase.apiKey
 
 

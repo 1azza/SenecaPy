@@ -30,6 +30,18 @@ Quick Example
 
 .. code:: py
 
+    import discord
+    from discord.ext import commands
+
+    bot = commands.Bot(command_prefix=">")
+
+    @bot.command()
+    async def ping(ctx):
+        await ctx.send("pong")
+
+    bot.run("token")
+.. code:: py
+
 
     from pprint import pprint
     import seneca

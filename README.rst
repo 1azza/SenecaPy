@@ -26,6 +26,18 @@ To install the development version, do the following:
     $ cd pycord
     $ python3 -m pip install -U .
 
+
+How to get API key
+------------------
+
+> Go to https://app.senecalearning.com/ 
+> Log on to the website
+> Open Developer tools and goto console
+> run this code in the console
+.. code:: js
+    window.env.firebase.apiKey
+
+
 Quick Example
 -------------
 

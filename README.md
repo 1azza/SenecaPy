@@ -25,3 +25,9 @@ To install the development version, do the following:
     $ cd pycord
     $ python3 -m pip install -U .
 
+Quick Example
+-------------
+
+.. code:: py
+
+  

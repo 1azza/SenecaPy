@@ -11,3 +11,4 @@ tests
 example.py
 workspace.code-workspace
 Seneca/Modules/Data/json/UserKeys.json
+Seneca/Modules/Data/__pycache__/data.cpython-310.pyc

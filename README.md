@@ -4,5 +4,5 @@ A python library to interact with the senecalearning.com API
 - [x] GetLocation from coordinates
 - [x] Refresh Token
 - [x] Get Answers for any seneca course
-- [ ] Parse Answers
+- [x] Parse Answers
 - [ ] Auto Complete Courses

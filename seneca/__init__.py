@@ -5,12 +5,12 @@ from .Modules.answers import Answers
 
 
 class User:
-    def __init__(self, Refresh_key):
-        token = Token()
-        self.idToken = token.Refresh(Refresh_key)
+    def __init__(self, username, password):
+        token = Token(username, password)
+        self.idToken = token.Refresh()
         self.Keys = token.userKeys
         self.id = token.user_id
-        self.info = Info(self.idToken, Refresh_key)
+        self.info = Info(self.idToken)
 
 locations = Locations() 
 answers = Answers()

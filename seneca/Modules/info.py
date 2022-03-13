@@ -1,12 +1,7 @@
 import requests
+from seneca.Modules.key import  APIKEY
 class Info:
-    def __init__(self, idToken, refresh_key): 
-        """_summary_
-
-        Args:
-            idToken (str) : The user JWT created from token.refresh
-        """        
-        self.refresh_key = refresh_key
+    def __init__(self, idToken): 
         self.idToken = idToken
         self.GetInfo()
 
@@ -17,7 +12,7 @@ class Info:
             json: The user Json object
         """        
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo"
-        querystring = {"key":self.refresh_key} #We need this key otherwise we cant acsess the account information
+        querystring = {"key": APIKEY} #We need this key otherwise we cant acsess the account information
         payload = {"idToken": self.idToken} #This token specifies the account we are getting the information from
         headers = {
             "authority": "www.googleapis.com"

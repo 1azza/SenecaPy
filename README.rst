@@ -27,25 +27,11 @@ To install the development version, do the following:
     $ python3 -m pip install -U .
 
 
-How to get API key
-------------------
-
-1. Go to https://app.senecalearning.com/ 
-2. Log on to the website
-3. Open Developer tools and goto console
-4. run this code in the console
-
-.. code:: py
-
-
-    window.env.firebase.apiKey
-
 
 Quick Example
 -------------
 
 .. code:: py
-
 
     from pprint import pprint
     import seneca
@@ -60,10 +46,8 @@ Quick Example
     pprint(seneca.locations.GetLocation('San Pedro de Atacama'))
 
 
-
-
     #Initialise user object
-    user = seneca.User('YOUR API KEY')
+    user = seneca.User('017437@brgsmail.org.uk', 'Larry1102')
 
 
     #Get All keys stored within the account
@@ -72,6 +56,7 @@ Quick Example
 
     #Get information stored within the  account
     pprint(user.info.GetInfo())
+
 
 
 

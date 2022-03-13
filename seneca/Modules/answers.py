@@ -1,5 +1,7 @@
 import requests
 from pprint import pprint
+
+from seneca.Modules.key import CORRELATOINID
 class Answers:
     def __init__(self):
         pass
@@ -136,7 +138,7 @@ class Answers:
         querystring = {"sectionId":Ids[1]}
         headers = {
             "authority": "course.app.senecalearning.com",
-            "correlationid": "1646689150102::d1ad61f3c3f3a08c484a352cbf79c72d",
+            "correlationid": CORRELATOINID,
         }
         response = requests.request("GET", self.url, headers=headers, params=querystring)
         self.url =  response.json().get('url')

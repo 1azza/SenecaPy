@@ -5,7 +5,7 @@ from .Modules.answers import Answers
 
 
 class User:
-    def __init__(self, username, password):
+    def __init__(self, username:str, password:str):
         token = Token(username, password)
         self.idToken = token.Refresh()
         self.Keys = token.userKeys

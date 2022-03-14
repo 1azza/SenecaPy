@@ -21,7 +21,7 @@ class Locations:
             print(self.__ParseInfo(i))
 
 
-    def GetLocation(self, name):
+    def GetLocation(self, name:str):
         """
         Finds Longitude and Latitude coords from the name of the location from seneca
         Args:

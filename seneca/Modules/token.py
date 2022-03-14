@@ -3,7 +3,7 @@ import requests
 from seneca.Modules.key import  APIKEY
 import json
 class Token:
-    def __init__(self,  email, password):
+    def __init__(self,  email:str, password:str):
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword"
 
         querystring = {"key": APIKEY}

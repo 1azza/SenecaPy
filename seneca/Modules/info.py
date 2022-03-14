@@ -34,7 +34,7 @@ class Info:
         self.createdAt = AccountInfo.get('createdAt')
         return AccountInfo
     
-    def __me(self, url):
+    def _me(self, url):
         self.headers['correlationid'] = '1647206128958::50f6180dec98105c2f1317155089ce1d'
         response = requests.request("GET", url, headers=self.headers)
         data = response.json()
@@ -42,21 +42,20 @@ class Info:
     
     def getSchoolData(self):
         url = 'https://schools.app.senecalearning.com/api/school-info/me'
-        SchoolInfo =  self.__me(url)
+        SchoolInfo =  self._me(url)
         return SchoolInfo
     
     def getUserData(self):
         url = 'https://user-info.app.senecalearning.com/api/user-info/me'
-        UserInfo = self.__me(url)
+        UserInfo = self._me(url)
         return UserInfo
 
     
     
     def getSubscriptionData(self):
         url = 'https://subscriptions.app.senecalearning.com/api/subscriptions/me'
-        SubscriptionData =  self.__me(url)
+        SubscriptionData =  self._me(url)
         return SubscriptionData
-  
 
 
 

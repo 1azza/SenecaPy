@@ -129,7 +129,7 @@ class Answers:
         
         
         
-    def Fetch(self, url):
+    def Fetch(self, url:str):
 
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)

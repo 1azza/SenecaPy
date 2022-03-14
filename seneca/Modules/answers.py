@@ -120,7 +120,7 @@ class Answers:
                 if Result:
                     Answers[i] = Result
 
-            pprint(Answers)
+            return Answers
         
         
         
@@ -145,4 +145,5 @@ class Answers:
         response = requests.request("GET", self.url, headers=headers)
         # with open('a.json', 'w') as f:
         #     f.write(response.text)
-        self._Parse(response.json())
+        Answers = self._Parse(response.json())
+        return Answers

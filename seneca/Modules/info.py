@@ -1,3 +1,4 @@
+from ast import Subscript
 import requests
 from seneca.Modules.key import  APIKEY, CORRELATOINID
 class Info:
@@ -5,6 +6,7 @@ class Info:
         self.idToken = idToken
         self.headers =  {
             'access-key' : self.idToken,
+            "origin": "https://app.senecalearning.com"
         }
     def classInfo(self):
         pass
@@ -17,11 +19,9 @@ class Info:
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo"
         querystring = {"key": APIKEY} #We need this key otherwise we cant acsess the account information
         payload = {"idToken": self.idToken} #This token specifies the account we are getting the information from
-        headers = {
-            "authority": "www.googleapis.com"
-        }
+
         #Sending Request to get the user information
-        response = requests.request("POST", url, json=payload, headers=headers, params=querystring)
+        response = requests.request("POST", url, json=payload, headers=self.headers, params=querystring)
 
 
         #Parsing Response
@@ -34,21 +34,29 @@ class Info:
         self.createdAt = AccountInfo.get('createdAt')
         return AccountInfo
     
-    
-    def getSchoolInfo(self):
-        url = 'https://schools.app.senecalearning.com/api/school-info/me'
+    def __me(self, url):
         self.headers['correlationid'] = '1647206128958::50f6180dec98105c2f1317155089ce1d'
         response = requests.request("GET", url, headers=self.headers)
-        UserInfo = response.json()
+        data = response.json()
+        return data
+    
+    def getSchoolData(self):
+        url = 'https://schools.app.senecalearning.com/api/school-info/me'
+        SchoolInfo =  self.__me(url)
+        return SchoolInfo
+    
+    def getUserData(self):
+        url = 'https://user-info.app.senecalearning.com/api/user-info/me'
+        UserInfo = self.__me(url)
         return UserInfo
+
     
     
     def getSubscriptionData(self):
         url = 'https://subscriptions.app.senecalearning.com/api/subscriptions/me'
-        self.headers['correlationid'] = '1647206128958::50f6180dec98105c2f1317155089ce1d'
-        response = requests.request("GET", url, headers=self.headers)
-        SubscriptionData = response.json()
+        SubscriptionData =  self.__me(url)
         return SubscriptionData
+  
 
 
 

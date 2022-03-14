@@ -47,15 +47,11 @@ Quick Example
 
 
     #Initialise user object
-    user = seneca.User('017437@brgsmail.org.uk', 'Larry1102')
-
-
-    #Get All keys stored within the account
-    pprint(user.Keys)
+    user = seneca.User('EMAIL', 'PASSWORD')
 
 
     #Get information stored within the  account
-    pprint(user.info.GetInfo())
+    pprint(user.info.getUserData())
 
 
 

@@ -44,7 +44,6 @@ class Answers:
                     Modules.append({ Question:[i.get('content'), i.get('moduleType')]})
                     
                     Question += 1
-            print(f'FoundModules:\n{len(Modules)}')
 
 
             def Calculate(Type, q):

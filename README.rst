@@ -2,7 +2,7 @@ SenecaPy
 --------
 A python library to interact with the senecalearning.com API
 
-![](http://www.reactiongifs.us/wp-content/uploads/2013/10/nuh_uh_conan_obrien.gif)
+.. image:: example.gif
 
 Installing
 ----------

@@ -1,6 +1,7 @@
+from distutils.log import error
 import requests
 from pprint import pprint
-
+from seneca.Modules.errors import errors
 from seneca.Modules.key import CORRELATOINID
 class Answers:
     def __init__(self):
@@ -8,9 +9,13 @@ class Answers:
 
 
     def _parseUrl(self, url):
-        courseId = url.split('course/')[1].split('/section')[0]
-        SectionId = url.split('section/')[1].split('/session')[0]
-        return [courseId, SectionId]
+        try:
+            courseId = url.split('course/')[1].split('/section')[0]
+            SectionId = url.split('section/')[1].split('/session')[0]
+            return [courseId, SectionId]
+        except:
+            errors.InvalidUrl(url)
+
 
 
 
@@ -139,7 +144,10 @@ class Answers:
             "authority": "course.app.senecalearning.com",
             "correlationid": CORRELATOINID,
         }
+      
         response = requests.request("GET", self.url, headers=headers, params=querystring)
+        if response.status_code != 200:
+            errors.CourseNotFound(Ids)
         self.url =  response.json().get('url')
         response = requests.request("GET", self.url, headers=headers)
         # with open('a.json', 'w') as f:

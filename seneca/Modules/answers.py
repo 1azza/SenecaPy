@@ -36,7 +36,7 @@ class Answers:
 
             #Output
             print(f'---{title}---')
-            print(f'NumberOfQuestions:\n{NumberOfModules}')
+            print(f'NumberOfQuestions:\n{NumberOfModules}\n')
 
 
 
@@ -88,7 +88,10 @@ class Answers:
                     a = [q.get('title')]
                     Correct = []
                     for i in q.get('definitions'):
-                        Correct.append(i.get('word')[1].get('word'))
+                        try:
+                            Correct.append(i.get('word')[1].get('word'))
+                        except:
+                            continue
                     a.append(Correct)
                     return a
                 

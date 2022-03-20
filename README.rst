@@ -2,7 +2,7 @@ SenecaPy
 --------
 A python library to interact with the senecalearning.com API
 
-![ Alt text](https://im2.ezgif.com/tmp/ezgif-2-10231577f7.gif) / ! [](https://im2.ezgif.com/tmp/ezgif-2-10231577f7.gif)
+.. image:: https://im2.ezgif.com/tmp/ezgif-2-10231577f7.gif
 
 Installing
 ----------

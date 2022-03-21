@@ -1,9 +1,8 @@
-from distutils.log import error
 import requests
 from pprint import pprint
 from seneca.Modules.errors import errors
 from seneca.Modules.key import CORRELATOINID
-class Answers:
+class Course:
     def __init__(self):
         pass
 
@@ -132,11 +131,23 @@ class Answers:
         
         
         
+    def QueryCourses(self):
+
+        url = "https://course.app.senecalearning.com/api/courses/queryCourses"
+
+        payload = {
+                "sort": ["firstPublished:desc"],
+                "size": 18
+            }
+        headers = {"correlationid": "1647887386631::02e946994d35a04376af966b404386fc"}
+
+        response = requests.request("POST", url, json=payload, headers=headers)
+        courses = response.json()
+        courses = courses.get('results').get('hits')
+        return courses        
         
         
-        
-        
-    def Fetch(self, url:str):
+    def getanswers(self, url:str):
 
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)

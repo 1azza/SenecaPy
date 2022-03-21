@@ -1,7 +1,7 @@
-from .Modules.locations import Locations
+from .Modules.memories import Memories
 from .Modules.token import Token
 from .Modules.info import Info
-from .Modules.answers import Answers
+from .Modules.course import Course
 
 
 class User:
@@ -11,6 +11,5 @@ class User:
         self.Keys = token.userKeys
         self.id = token.user_id
         self.info = Info(self.idToken)
-
-locations = Locations() 
-answers = Answers()
+        self.memories = Memories(self.idToken) 
+course = Course()

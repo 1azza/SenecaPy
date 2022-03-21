@@ -2,6 +2,8 @@ SenecaPy
 --------
 A python library to interact with the senecalearning.com API
 
+.. image:: example.gif
+
 Installing
 ----------
 

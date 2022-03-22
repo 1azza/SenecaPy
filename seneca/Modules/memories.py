@@ -44,7 +44,7 @@ class Memories:
         if response.status_code == 201:
             print(response)
             print('Set!')
-            pprint(response.json())
+            pprint(response.json().get('courseName'))
         else:
             print('Error')
             pprint(response.json())

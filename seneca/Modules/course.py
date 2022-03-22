@@ -131,13 +131,13 @@ class Course:
         
         
         
-    def QueryCourses(self):
+    def QueryCourses(self, number:int):
 
         url = "https://course.app.senecalearning.com/api/courses/queryCourses"
 
         payload = {
                 "sort": ["firstPublished:desc"],
-                "size": 18
+                "size": number
             }
         headers = {"correlationid": "1647887386631::02e946994d35a04376af966b404386fc"}
 

@@ -1,6 +1,21 @@
-class SenecaError (Exception):
-    def CourseNotFound(self, course):
-        raise SenecaError(f'\nCourse not found \n{course}')
-    def InvalidUrl(self, url):
-        raise SenecaError(f'\nInvalid Url: \n{url}')
-errors = SenecaError()
+
+"""File for defining errors"""
+
+
+class SenecaError(Exception):
+    """Base class for Seneca errors."""
+
+class CourseNotFound(SenecaError):
+    pass
+
+
+class InvalidUrl(SenecaError):
+    def __init__(self, url):
+        super().__init__(str(url))
+
+class InvalidCredentials(SenecaError):
+    pass
+
+
+class ServerError(SenecaError):
+    pass

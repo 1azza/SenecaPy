@@ -1,6 +1,6 @@
 import requests
 from pprint import pprint
-from seneca.Modules.errors import errors
+from seneca.Modules.errors import (CourseNotFound, InvalidUrl)
 from seneca.Modules.key import CORRELATOINID
 class Course:
     def __init__(self):
@@ -13,7 +13,7 @@ class Course:
             SectionId = url.split('section/')[1].split('/session')[0]
             return [courseId, SectionId]
         except:
-            errors.InvalidUrl(url)
+            raise InvalidUrl(url)
 
 
 
@@ -161,7 +161,7 @@ class Course:
       
         response = requests.request("GET", self.url, headers=headers, params=querystring)
         if response.status_code != 200:
-            errors.CourseNotFound(Ids)
+            raise CourseNotFound()
         self.url =  response.json().get('url')
         response = requests.request("GET", self.url, headers=headers)
         # with open('a.json', 'w') as f:

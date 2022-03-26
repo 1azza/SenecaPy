@@ -2,6 +2,7 @@ from pprint import pprint
 import requests
 from seneca.Modules.key import  APIKEY
 import json
+from seneca.Modules.errors import (ServerError, InvalidCredentials)
 class Token:
     def __init__(self,  email:str, password:str):
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword"
@@ -42,6 +43,10 @@ class Token:
 
         response = requests.request(
             "POST", url, data=payload, headers=headers, params=querystring)
+        if response.status_code == 400:
+            raise InvalidCredentials()
+        elif response.status_code != 200:
+            raise ServerError()
         self.idToken = response.json().get('id_token')
         self.user_id = response.json().get('user_id')
         if self.idToken == None:

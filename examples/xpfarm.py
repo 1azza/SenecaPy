@@ -10,7 +10,7 @@ def main():
         for i in range(iterations):
             s.SubmitData()
     print('ok')
-    user = seneca.User(USERNAME, PASSWORD)
+    user = seneca.User(EMAIL, PASSWORD)
     s = user.Session('g60fcc5d-57d8-4833-96b1-bae36baaf12e', user)
     s.Start()
     

@@ -19,11 +19,15 @@ class Token:
             "pragma": "no-cache",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36",
         }
-
+        print('Logging in...')
         response = requests.request("POST", url, json=payload, headers=self.headers, params=querystring)
-
         self.refereshToken = response.json().get('refreshToken')
-
+        if response.status_code == 400:
+            raise InvalidCredentials()
+        elif response.status_code != 200:
+            raise ServerError()
+        else:
+            print('Succesful!')
         
     def Refresh(self):
         url = "https://securetoken.googleapis.com/v1/token"
@@ -40,15 +44,18 @@ class Token:
             "accept": "*/*",
             "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"
         }
-
+        print('Refreshing idToken...')
         response = requests.request(
             "POST", url, data=payload, headers=headers, params=querystring)
         if response.status_code == 400:
             raise InvalidCredentials()
         elif response.status_code != 200:
             raise ServerError()
+        else:
+            print('Succesful!')
         self.idToken = response.json().get('id_token')
         self.user_id = response.json().get('user_id')
+        
         if self.idToken == None:
             print(response)
         else:

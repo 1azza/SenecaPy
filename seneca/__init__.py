@@ -2,7 +2,7 @@ from .Modules.memories import Memories
 from .Modules.token import Token
 from .Modules.info import Info
 from .Modules.course import Course
-from .Modules.sessions.Sessions import Sessions
+from .Modules.Sessions import Sessions
 
 class User():
     def __init__(self, username:str, password:str):

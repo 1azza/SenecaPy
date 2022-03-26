@@ -1,6 +1,6 @@
 from websocket import create_connection
 import requests
-from seneca.Modules.sessions.data import Create
+from seneca.Modules.data import Create
 import threading
 from pprint import pprint
 import json

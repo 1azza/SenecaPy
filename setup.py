@@ -16,8 +16,8 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests'],
-    keywords=['python', 'cheat', 'seneca', 'API', 'wrapper', 'requests'],
+    install_requires=['requests', 'websocket-client'],
+    keywords=['python', 'cheat', 'seneca', 'API', 'wrapper', 'requests', 'senecalearning', 'senecalearning.com', 'homework'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",

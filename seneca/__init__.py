@@ -4,7 +4,7 @@ from .Modules.info import Info
 from .Modules.course import Course
 from .Modules.sessions.Sessions import Sessions
 
-class User:
+class User():
     def __init__(self, username:str, password:str):
         token = Token(username, password)
         self.idToken = token.Refresh()

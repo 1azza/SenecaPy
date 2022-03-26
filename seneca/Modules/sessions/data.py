@@ -16,7 +16,7 @@ def Create(SessionId):
             "averageScore": 1,
             "sessionScore": 1,
             "timeStarted": "2022-03-25T19:04:28+00:00",
-            "timeFinished": "2022-03-25T19:17:17+00:00",
+            "timeFinished": "2022-03-25T23:17:17+00:00",
             "startingProficiency": 0.9662722814208937,
             "endingProficiency": 0.9766666666666667,
             "startingCourseProficiency": 0.012078403517761172,

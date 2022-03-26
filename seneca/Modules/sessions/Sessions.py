@@ -3,23 +3,30 @@ import requests
 import re
 from seneca.Modules.sessions.data import Create
 # from seneca.__init__ import User
+import threading
 class Sessions():
     def __init__(self,  SessionId, User):
         self.SessionId = SessionId
         self.idToken = User.idToken
         self.userId = User.id
+        
     def Start(self):
-        print('Connecting to websocket...')
-        self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
-        print('Connection succesful!')
-        print('Sending "action":"start-session"')
-        
-        data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
-        print(data)
-        self.ws.send(data)
-        
-        print('Session Started')
-        print("Receiving...")
+        def thread_function(self):
+            print('Connecting to websocket...')
+            self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
+            print('Connection succesful!')
+            print('Sending "action":"start-session"')
+            data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
+            print(data)
+            self.ws.send(data)
+            print('Session Started')
+            print("Receiving...")
+            while True:
+                print(self.ws.recv(), '\n')
+        print('Initiating thread')
+        x = threading.Thread(target=thread_function, args=(self,))
+        x.start()
+        print('Thread initiated')
         
     def End(self):
         self.ws.close()

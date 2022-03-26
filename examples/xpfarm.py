@@ -1,6 +1,5 @@
 import seneca
 import threading
-import concurrent.futures
 import time
 EMAIL = input('Please enter your email for senecalearning.com: ')
 PASSWORD = input('Please enter your password for senecalearning.com: ')

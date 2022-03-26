@@ -56,8 +56,14 @@ class Info:
         url = 'https://subscriptions.app.senecalearning.com/api/subscriptions/me'
         SubscriptionData =  self._me(url)
         return SubscriptionData
-
-
+    def getKnowledgeScore(self):
+        url = 'https://stats.app.senecalearning.com/api/stats/users'
+        data =   self._me(url)
+        sessionModulesStudied = data.get('sessionModulesStudied')
+        sessionsCompleted = data.get('sessionsCompleted')
+        totalStudyTime = data.get('totalStudyTime')
+        KnowledgeScore = totalStudyTime*sessionsCompleted*sessionModulesStudied
+        return KnowledgeScore
 
 
 

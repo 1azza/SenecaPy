@@ -4,7 +4,7 @@ import os
 
 
 
-VERSION = '1.1.0b4'
+VERSION = '2.0.0b1'
 DESCRIPTION = 'senecalearning.com API wrapper'
 
 # Setting up
@@ -16,8 +16,8 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['requests'],
-    keywords=['python', 'cheat', 'seneca', 'API', 'wrapper', 'requests'],
+    install_requires=['requests', 'websocket-client'],
+    keywords=['python', 'cheat', 'seneca', 'API', 'wrapper', 'requests', 'senecalearning', 'senecalearning.com', 'homework'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",

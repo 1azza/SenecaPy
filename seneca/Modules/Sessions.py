@@ -4,6 +4,7 @@ from seneca.Modules.data import Create
 import threading
 from pprint import pprint
 import json
+import logging
 class Sessions():
     def __init__(self,  SessionId, User):
         self.SessionId = SessionId
@@ -12,24 +13,23 @@ class Sessions():
         
     def Start(self):
         def thread_function(self):
-            print('Connecting to websocket...')
+            logging.info('Connected to websocket')
             self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
-            print('Connection succesful!')
             data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
-            print('⏫', data)
+            logging.info('Starting session')
             self.ws.send(data)
-            print('Established session')
-            print("Ready to receive...")
+            logging.info("Session ready")
             while True:
                 data = self.ws.recv()
-                data = json.loads(data)
+                try:
+                    data = json.loads(data)
+                except:
+                    break
                 data = data.get('data')
                 TotalXp = data.get('totalXp')
                 print('TotalXp: ', TotalXp )
-        print('Initiating thread...')
         x = threading.Thread(target=thread_function, args=(self,))
         x.start()
-        print('Succesful!')
         
     def End(self):
         self.ws.close()

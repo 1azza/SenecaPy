@@ -34,6 +34,7 @@ Quick Example
 -------------
 
 .. code:: py
+
     import seneca
     from pprint import pprint
 

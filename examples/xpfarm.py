@@ -3,9 +3,11 @@ import threading
 import concurrent.futures
 import time
 import logging
-# EMAIL = input('Please enter your email for senecalearning.com: ')
-# PASSWORD = input('Please enter your password for senecalearning.com: ')
 logging.basicConfig(level=logging.INFO)
+
+EMAIL = input('Please enter your email for senecalearning.com: ')
+PASSWORD = input('Please enter your password for senecalearning.com: ')
+user = seneca.User(EMAIL, PASSWORD)
 
 def main():
     args = round(int(input('How many times would you like to complete the section? '))/4)
@@ -13,7 +15,6 @@ def main():
     def go(iterations):
         for i in range(iterations):
             s.SubmitData()
-    user = seneca.User('017437@brgsmail.org.uk', 'Larry1102')
     s = user.Session('g60fcc5d-57d8-4833-96b1-bae36baaf12e', user)
     oks = user.info.getKnowledgeScore()   
     oks = round(oks/1000000000000, 1)

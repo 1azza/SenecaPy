@@ -146,8 +146,11 @@ class Course:
         courses = courses.get('results').get('hits')
         return courses        
         
-        
-    def getanswers(self, url:str):
+    def getAnswers(self, url:str):
+        Course = self.getCourseInfo(url)
+        Answers = self._Parse(Course)
+        return Answers
+    def getCourseInfo(self, url:str):
 
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)
@@ -164,7 +167,5 @@ class Course:
             raise CourseNotFound()
         self.url =  response.json().get('url')
         response = requests.request("GET", self.url, headers=headers)
-        # with open('a.json', 'w') as f:
-        #     f.write(response.text)
-        Answers = self._Parse(response.json())
-        return Answers
+        Course = response.json()
+        return Course

@@ -20,7 +20,7 @@ class Token:
             "pragma": "no-cache",
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36",
         }
-        logging.debug(f'Logging in as: {email}')
+        logging.info(f'Logging in as: {email}')
         response = requests.request("POST", url, json=payload, headers=self.headers, params=querystring)
         self.refereshToken = response.json().get('refreshToken')
         if response.status_code == 400:
@@ -38,7 +38,7 @@ class Token:
         response = requests.request(
             "POST", url, data=payload, headers=headers, params=querystring)
         if response.status_code == 200:
-            logging.debug('Refreshed idToken')
+            logging.info('Refreshed idToken')
         elif response.status_code == 400:
             raise InvalidCredentials()
         else:

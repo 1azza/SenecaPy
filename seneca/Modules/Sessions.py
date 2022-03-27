@@ -12,13 +12,13 @@ class Sessions():
         self.userId = User.id
         
     def Start(self):
+        self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
+        logging.info('Connected to websocket')
+        data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
+        logging.info('Starting session')
+        self.ws.send(data)
+        logging.info("Session ready")
         def thread_function(self):
-            logging.info('Connected to websocket')
-            self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
-            data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
-            logging.info('Starting session')
-            self.ws.send(data)
-            logging.info("Session ready")
             while True:
                 data = self.ws.recv()
                 try:

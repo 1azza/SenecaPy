@@ -5,7 +5,7 @@ import time
 import logging
 # EMAIL = input('Please enter your email for senecalearning.com: ')
 # PASSWORD = input('Please enter your password for senecalearning.com: ')
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 def main():
     args = round(int(input('How many times would you like to complete the section? '))/4)
@@ -15,6 +15,8 @@ def main():
             s.SubmitData()
     user = seneca.User('017437@brgsmail.org.uk', 'Larry1102')
     s = user.Session('g60fcc5d-57d8-4833-96b1-bae36baaf12e', user)
+    oks = user.info.getKnowledgeScore()   
+    oks = round(oks/1000000000000, 1)
     s.Start()
     
     x1 = threading.Thread(target=go, args=(args,))
@@ -34,10 +36,10 @@ def main():
     
     time.sleep(1)
     s.End()
-    print('\n\nNew knowledge score:')    
-    ks = user.info.getKnowledgeScore()   
-    ks = round(ks/1000000000000, 1)
-    print(ks, 'T\n\n')
+    nks = user.info.getKnowledgeScore()   
+    nks = round(nks/1000000000000, 1)
+    print('\n\nknowledge score increase:')    
+    print(f'{oks}T ---> {nks}T\n\n')
     main()
 main()
     

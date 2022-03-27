@@ -8,9 +8,10 @@ class User():
     def __init__(self, username:str, password:str):
         token = Token(username, password)
         self.idToken = token.Refresh()
-        self.Keys = token.userKeys
+        self.Tokens = token.userKeys
         self.id = token.user_id
         self.info = Info(self.idToken)
+        self.Username = self.info.getAccountInfo().get('displayName')
         self.memories = Memories(self.idToken)
         self.Session = Sessions
 

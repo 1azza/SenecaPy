@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 from seneca.Modules.errors import (CourseNotFound, InvalidUrl)
 from seneca.Modules.key import CORRELATOINID
 class Course:

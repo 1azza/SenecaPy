@@ -6,6 +6,4 @@ from pprint import pprint
 
 url = input('Please enter url for seneca course')
 data = seneca.course.getanswers(url)
-
-
 pprint(data)

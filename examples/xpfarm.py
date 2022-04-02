@@ -16,7 +16,7 @@ def main():
 
     def sesh():
         args = int(input('How many times would you like to complete the section? '))
-        threads = int(input("How many threads?"))
+        threads = int(input("How many instances?"))
         if threads >= 10:
             logging.warning("High thread amounts may affect stability")
 

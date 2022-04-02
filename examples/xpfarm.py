@@ -11,13 +11,15 @@ def main():
         user = seneca.User(EMAIL, PASSWORD)
     except Exception as e:
         if e.__class__.__name__ == 'InvalidCredentials':
-            print('Error! please enter valid credentials\n')
+            logging.error('Please enter valid credentials')
             main()
 
     def sesh():
         args = int(input('How many times would you like to complete the section? '))
-        logging.warning("High thread amounts may affect stability") 
         threads = int(input("How many threads?"))
+        if threads >= 10:
+            logging.warning("High thread amounts may affect stability")
+
         args = round(args/threads)
         def go(iterations):
             for i in range(iterations):

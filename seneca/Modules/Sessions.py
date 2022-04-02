@@ -1,3 +1,4 @@
+from datetime import datetime
 from websocket import create_connection
 import requests
 from seneca.Modules.data import Create
@@ -30,7 +31,9 @@ class Sessions():
                 data = data.get('data')
                 TotalXp = data.get('totalXp')
                 total += 1
-                print(f"{total}. TotalXp: {TotalXp}")
+                time = datetime.now()
+                current = time.strftime("%H:%M:%S")
+                print(f"{total}. TotalXp: {TotalXp} Time: {current}")
         x = threading.Thread(target=thread_function, args=(self,))
         x.start()
         

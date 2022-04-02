@@ -12,6 +12,7 @@ class Sessions():
         self.userId = User.id
         
     def Start(self):
+        global total
         self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
         logging.info('Connected to websocket')
         data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
@@ -19,6 +20,7 @@ class Sessions():
         self.ws.send(data)
         logging.info("Session ready")
         def thread_function(self):
+            total = 0
             while True:
                 data = self.ws.recv()
                 try:
@@ -27,7 +29,8 @@ class Sessions():
                     break
                 data = data.get('data')
                 TotalXp = data.get('totalXp')
-                print('TotalXp: ', TotalXp )
+                total += 1
+                print(f"{total}. TotalXp: {TotalXp}")
         x = threading.Thread(target=thread_function, args=(self,))
         x.start()
         

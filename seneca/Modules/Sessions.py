@@ -22,7 +22,11 @@ class Sessions():
         def thread_function(self):
             total = 0
             while True:
-                data = self.ws.recv()
+                try:
+                    data = self.ws.recv()
+                except:
+                    print('Connection closed')
+                    continue
                 try:
                     data = json.loads(data)
                 except:

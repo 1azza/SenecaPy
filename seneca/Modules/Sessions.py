@@ -19,26 +19,17 @@ class Sessions():
         logging.info('Starting session')
         self.ws.send(data)
         logging.info("Session ready")
-        def thread_function(self):
-            total = 0
-            while True:
-                try:
-                    data = self.ws.recv()
-                except:
-                    print('Connection closed')
-                    continue
-                try:
-                    data = json.loads(data)
-                except:
-                    break
-                data = data.get('data')
-                TotalXp = data.get('totalXp')
-                total += 1
-                time = datetime.now()
-                current = time.strftime("%H:%M:%S")
-                print(f"{total}. TotalXp: {TotalXp} Time: {current}")
-        x = threading.Thread(target=thread_function, args=(self,))
-        x.start()
+    def getLastMessage(self):
+        try:
+            data = self.ws.recv()
+        except:
+            print('Connection closed')
+            self.getLastMessage()
+        try:
+            data = json.loads(data)
+        except:
+            self.End()
+        return data
         
     def End(self):
         self.ws.close()

@@ -21,7 +21,7 @@ def main():
         threads = int(input("How many instances? "))
         if threads >= 10:
             logging.warning("High thread amounts may affect stability")
-
+        
         args = round(args / threads)
 
         def go(iterations):

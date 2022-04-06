@@ -6,6 +6,12 @@ from .Modules.sessions import Sessions
 from .Modules.profile import Profile
 import logging
 class User():
+    '''
+    A class that defines the user.
+    :param username: The username of the user.
+    :param password: The password of the user.
+    :return: A user object.
+    '''
     def __init__(self, username:str, password:str):
         token = Token(username, password)
         self.idToken = token.Refresh()

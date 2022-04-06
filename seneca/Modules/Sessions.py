@@ -1,4 +1,5 @@
 from datetime import datetime
+from http.client import ResponseNotReady
 from websocket import create_connection
 import requests
 from seneca.Modules.data import Create
@@ -7,12 +8,21 @@ from pprint import pprint
 import json
 import logging
 class Sessions():
+    '''
+    This is a constructor for the Sessions class.
+    :param SessionId: The sessionId of the user.
+    :param User: The user object.
+    '''
     def __init__(self,  SessionId:str, User:any): 
         self.SessionId = SessionId
         self.idToken = User.idToken
         self.userId = User.id
         
     def Start(self):
+        '''
+        Starts the session and starts a thread to keep track of the xp.
+        :return: None
+        '''
         self.ws = create_connection(f"wss://session-ws.app.senecalearning.com/?access-key={self.idToken}&sessionId={self.SessionId}")
         logging.info('Connected to websocket')
         data = '{"action":"start-session","data":{"userId":"'+  self.userId +'","sessionId":"' + self.SessionId + '","courseId":"2670ac10-1d69-11e8-bf76-f14a3ef7c0e6","sectionId":"eb52d2e0-1d6b-11e8-8e43-0b8b5e91224a"}}'
@@ -20,6 +30,11 @@ class Sessions():
         self.ws.send(data)
         logging.info("Session ready")
         def thread_function(self):
+            '''
+            This function is used to collect the data from the web socket.
+            :param self: The self parameter is a reference to the class instance itself.
+            :return: None
+            '''
             total = 0
             while True:
                 data = self.ws.recv()
@@ -37,11 +52,18 @@ class Sessions():
         x.start()
         
     def End(self):
+        '''
+        Closes the connection to the websocket.
+        '''
         self.ws.close()
         
         
         
     def SubmitData(self):
+        '''
+        Submits the data to the server.
+        :return: The response from the server.
+        '''
         url = "https://stats.app.senecalearning.com/api/stats/sessions"
 
         payload =  Create(self.SessionId)
@@ -68,7 +90,7 @@ class Sessions():
         response = requests.request("POST", url, json=payload, headers=headers)
 
         if response.status_code == 200:
-            pass
+            return response
 
 
 

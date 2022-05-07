@@ -151,6 +151,7 @@ class Course:
         return Answers
     def getCourseInfo(self, url:str):
 
+
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)
         Template.insert(1, Ids[0])

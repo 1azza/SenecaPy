@@ -3,6 +3,7 @@ from .Modules.token import Token
 from .Modules.info import Info
 from .Modules.course import Course
 from .Modules.Sessions import Sessions
+from .Modules.Profile import Profile
 import logging
 class User():
     def __init__(self, username:str, password:str):
@@ -15,6 +16,5 @@ class User():
         self.id = token.user_id
         self.memories = Memories(self.idToken)
         self.Session = Sessions
-
-        
+        self.profile = Profile(self.idToken)        
 course = Course()

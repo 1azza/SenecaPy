@@ -5,6 +5,12 @@ import json
 from seneca.Modules.errors import (ServerError, InvalidCredentials)
 import logging
 class Token:
+    '''
+    This is a class for creating a token object.
+    :param email: The email of the user.
+    :param password: The password of the user.
+    :return: A token object.
+    '''
     def __init__(self,  email:str, password:str):
         url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword"
 
@@ -29,6 +35,10 @@ class Token:
             raise ServerError()
         
     def Refresh(self):
+        '''
+        Refreshes the idToken.
+        :return: The idToken.
+        '''
         url = "https://securetoken.googleapis.com/v1/token"
         querystring = {"key": APIKEY}
         payload = f"grant_type=refresh_token&refresh_token={self.refereshToken}"

@@ -35,6 +35,7 @@ class Sessions():
             :param self: The self parameter is a reference to the class instance itself.
             :return: None
             '''
+            
             total = 0
             while True:
                 data = self.ws.recv()

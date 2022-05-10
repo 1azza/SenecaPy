@@ -1,5 +1,5 @@
 import requests
-from seneca.Modules.errors import (CourseNotFound, InvalidUrl)
+from seneca.Modules.errors import (CourseNotFound, InvalidUrl, NoPremiumSubscriptionFound)
 from seneca.Modules.key import CORRELATOINID
 class Course:
     '''
@@ -172,12 +172,13 @@ class Course:
         Course = self.getCourseInfo(url)
         Answers = self._Parse(Course)
         return Answers
-    def getCourseInfo(self, url:str):
+    def getCourseInfo(self, url:str, user = None):
         '''
         This function parses the url and extracts the course id and section id.
         :param url: The url of the course.
         :return: A list containing the course id and section id.
         '''
+        
         Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)
         Template.insert(1, Ids[0])
@@ -185,9 +186,14 @@ class Course:
         querystring = {"sectionId":Ids[1]}
         headers = {
             "authority": "course.app.senecalearning.com",
-            "correlationid": CORRELATOINID,
+            "correlationid": CORRELATOINID
         }
+        if user:
+            headers["access-key"] = user.idToken
         response = requests.request("GET", self.url, headers=headers, params=querystring)
+        if response.json().get('reason'):
+            raise NoPremiumSubscriptionFound()
+
         if response.status_code != 200:
             raise CourseNotFound()
         self.url =  response.json().get('url')

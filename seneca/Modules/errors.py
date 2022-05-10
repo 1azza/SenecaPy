@@ -19,3 +19,5 @@ class InvalidCredentials(SenecaError):
 
 class ServerError(SenecaError):
     pass
+class NoPremiumSubscriptionFound(SenecaError):
+    pass

@@ -4,7 +4,7 @@ import os
 
 
 
-VERSION = '2.0.0b7'
+VERSION = '2.0.0b8'
 DESCRIPTION = 'senecalearning.com API wrapper'
 
 # Setting up

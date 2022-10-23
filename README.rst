@@ -1,5 +1,7 @@
 SenecaPy
 --------
+**PLEASE NOTE I HAVE NOT WORKED ON THIS PROJECT IN A WHILE AND IT MAY NOT BE WORKING**
+
 A python library to interact with the senecalearning.com API
 
 .. image:: example.gif

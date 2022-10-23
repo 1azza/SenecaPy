@@ -91,6 +91,8 @@ class Sessions():
 
         if response.status_code == 200:
             return response
+        else:
+            return 'Error'
 
 
 

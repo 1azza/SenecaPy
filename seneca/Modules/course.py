@@ -1,13 +1,16 @@
 import requests
-from seneca.Modules.errors import (CourseNotFound, InvalidUrl, NoPremiumSubscriptionFound)
+from seneca.Modules.errors import (
+    CourseNotFound, InvalidUrl, NoPremiumSubscriptionFound)
 from seneca.Modules.key import CORRELATOINID
+
+
 class Course:
     '''
     This is a class for the Course.
     '''
+
     def __init__(self):
         pass
-
 
     def _parseUrl(self, url):
         '''
@@ -22,34 +25,26 @@ class Course:
         except:
             raise InvalidUrl(url)
 
-
-
-
-
-    
     def _Parse(self, data):
         '''
         Parses the data from the API and returns a dictionary of the questions and answers.
         :param data: The data from the API.
         :return: A dictionary of the questions and answers.
         '''
-                
-        #Finds Modules Ids and Number of Modules
+
+        # Finds Modules Ids and Number of Modules
         NumberOfModules = 0
         ModuleIds = []
         for i in data.get("moduleIds"):
             NumberOfModules += 1
             ModuleIds.append(i)
-            
-            
-        #Finds title
+
+        # Finds title
         title = data.get('title')
 
-        #Output
+        # Output
         print(f'---{title}---')
         print(f'NumberOfQuestions:\n{NumberOfModules}\n')
-
-
 
         Modules = []
         contents = data.get('contents')
@@ -57,10 +52,10 @@ class Course:
         for i in contents:
             contentModules = i.get('contentModules')
             for i in contentModules:
-                Modules.append({ Question:[i.get('content'), i.get('moduleType')]})
-                
-                Question += 1
+                Modules.append(
+                    {Question: [i.get('content'), i.get('moduleType')]})
 
+                Question += 1
 
         def Calculate(Type, q):
             if Type == 'equation':
@@ -94,7 +89,7 @@ class Course:
                         continue
                 a.append(Correct)
                 return a
-            
+
             elif Type == 'grid':
                 a = [q.get('title')]
                 Correct = []
@@ -105,7 +100,7 @@ class Course:
                         continue
                 a.append(Correct)
                 return a
-            
+
             elif Type == 'exact-list':
                 a = [q.get('statement')]
                 Correct = []
@@ -113,7 +108,7 @@ class Course:
                     Correct.append(i.get('value')[0].get('word'))
                 a.append(Correct)
                 return a
-            
+
             elif Type == 'multiSelect':
                 a = [q.get('question')]
                 Correct = []
@@ -126,8 +121,7 @@ class Course:
                 a = [Type]
                 a.append(q)
                 return a
-        
-            
+
         Answers = {}
         for i in range(len(Modules)):
             q = Modules[i].get(i)
@@ -139,11 +133,8 @@ class Course:
                 Answers[i] = Result
 
         return Answers
-        
-        
-        
-        
-    def QueryCourses(self, number:int):
+
+    def QueryCourses(self, number: int, filters:dict=None):
         '''
         This function queries the seneca app api for a number of courses.
         :param number: The number of courses to be queried.
@@ -153,17 +144,31 @@ class Course:
         url = "https://course.app.senecalearning.com/api/courses/queryCourses"
 
         payload = {
-                "sort": ["firstPublished:desc"],
-                "size": number
-            }
-        headers = {"correlationid": "1647887386631::02e946994d35a04376af966b404386fc"}
+            "aggregations": [
+                "bdf3e1a7-ef2e-46a7-8e70-52d3370da3da",
+                "be426768-2fd2-4231-9c25-22354a89c1b2",
+                "97425b6f-d99e-4066-8ac5-dfb2c7c1519a",
+                "8c71d055-ff40-4536-8629-5073c618ea53",
+                "29304df7-aad4-4b2f-ac43-2fb169c04ebd",
+                "3a8d961c-3623-422e-8d7e-8606191a7bca",
+                "3df4913a-5a19-4777-9fdf-1c1d74f40491"
+            ],
+
+            "query": "",
+
+            "size": number
+        }
+        if filters:
+            payload['filters'] = filters
+        headers = {
+            "correlationid": "1647887386631::02e946994d35a04376af966b404386fc"}
 
         response = requests.request("POST", url, json=payload, headers=headers)
         courses = response.json()
         courses = courses.get('results').get('hits')
-        return courses        
-        
-    def getAnswers(self, url:str):
+        return courses
+
+    def getAnswers(self, url: str):
         '''
         This function gets the answers from the given url.
         :param url: The url of the course.
@@ -172,31 +177,34 @@ class Course:
         Course = self.getCourseInfo(url)
         Answers = self._Parse(Course)
         return Answers
-    def getCourseInfo(self, url:str, user = None):
+
+    def getCourseInfo(self, url: str, user=None):
         '''
         This function parses the url and extracts the course id and section id.
         :param url: The url of the course.
         :return: A list containing the course id and section id.
         '''
-        
-        Template = ['https://course.app.senecalearning.com/api/courses/', '/signed-url']
+
+        Template = [
+            'https://course.app.senecalearning.com/api/courses/', '/signed-url']
         Ids = self._parseUrl(url)
         Template.insert(1, Ids[0])
         self.url = ''.join(Template)
-        querystring = {"sectionId":Ids[1]}
+        querystring = {"sectionId": Ids[1]}
         headers = {
             "authority": "course.app.senecalearning.com",
             "correlationid": CORRELATOINID
         }
         if user:
             headers["access-key"] = user.idToken
-        response = requests.request("GET", self.url, headers=headers, params=querystring)
+        response = requests.request(
+            "GET", self.url, headers=headers, params=querystring)
         if response.json().get('reason'):
             raise NoPremiumSubscriptionFound()
 
         if response.status_code != 200:
             raise CourseNotFound()
-        self.url =  response.json().get('url')
+        self.url = response.json().get('url')
         response = requests.request("GET", self.url, headers=headers)
         Course = response.json()
         return Course
